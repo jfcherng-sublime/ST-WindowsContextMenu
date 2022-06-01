@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+Desktop.ini
+Thumbs.db
+
+# Python
+*.py[cod]
+.mypy_cache/
+__pycache__/
+
+# git worktrees
+br-*/
+branch-*/

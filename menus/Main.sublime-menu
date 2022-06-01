@@ -1,0 +1,91 @@
+[
+    {
+        "id": "preferences",
+        "children": [
+            {
+                "caption": "-",
+            },
+            {
+                "id": "wcm",
+                "caption": "Windows Context Menu",
+                "children": [
+                    {
+                        "caption": "Sublime Text",
+                        "children": [
+                            {
+                                "caption": "All context menus",
+                                "command": "wcm_toggle_open_with",
+                                "args": {
+                                    "app": "sublime_text",
+                                    "target": "_all_",
+                                },
+                            },
+                            {
+                                "caption": "-",
+                            },
+                            {
+                                "caption": "Context menu for file",
+                                "command": "wcm_toggle_open_with",
+                                "args": {
+                                    "app": "sublime_text",
+                                    "target": "file",
+                                },
+                            },
+                            {
+                                "caption": "Context menu for directory",
+                                "command": "wcm_toggle_open_with",
+                                "args": {
+                                    "app": "sublime_text",
+                                    "target": "directory",
+                                },
+                            },
+                            {
+                                "caption": "Context menu for directory background",
+                                "command": "wcm_toggle_open_with",
+                                "args": {
+                                    "app": "sublime_text",
+                                    "target": "directory_background",
+                                },
+                            },
+                        ],
+                    },
+                    {
+                        "caption": "Sublime Merge",
+                        "children": [
+                            {
+                                "caption": "All context menus",
+                                "command": "wcm_toggle_open_with",
+                                "args": {
+                                    "app": "sublime_merge",
+                                    "target": "_all_",
+                                },
+                            },
+                            {
+                                "caption": "-",
+                            },
+                            {
+                                "caption": "Context menu for directory",
+                                "command": "wcm_toggle_open_with",
+                                "args": {
+                                    "app": "sublime_merge",
+                                    "target": "directory",
+                                },
+                            },
+                            {
+                                "caption": "Context menu for directory background",
+                                "command": "wcm_toggle_open_with",
+                                "args": {
+                                    "app": "sublime_merge",
+                                    "target": "directory_background",
+                                },
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                "caption": "-",
+            },
+        ],
+    },
+]
