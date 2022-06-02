@@ -1,3 +1,4 @@
+from .settings import get_st_setting
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
@@ -16,8 +17,7 @@ class AppInfo:
         if self.nickname == "st":
             return Path(sublime.executable_path()).parent
         if self.nickname == "sm":
-            pref = sublime.load_settings("Preferences.sublime-settings")
-            if Path(bound_sm := pref.get("sublime_merge_path", "")).is_file():
+            if Path(bound_sm := get_st_setting("sublime_merge_path", "")).is_file():
                 return bound_sm.parent
             # convention
             if (default := Path(R"C:\Program Files\Sublime Merge")).is_dir():
