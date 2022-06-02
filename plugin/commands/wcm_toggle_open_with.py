@@ -1,3 +1,4 @@
+from ..settings import get_plugin_setting
 from ..core import AppContextMenuSet
 from ..types import AppInfo, MenuTarget
 from pathlib import Path
@@ -87,9 +88,14 @@ class WcmToggleOpenWithCommand(sublime_plugin.ApplicationCommand):
         # currently disable => we want to enabled
         else:
             app = app_menu_set.app
+            menu_text: str = get_plugin_setting("menu_text")
             sublime.message_dialog(f"Please select {app.name} directory...")
             sublime.select_folder_dialog(
-                lambda folder: self._add_select_app_dir_callback(app_menu_set, folder),  # type: ignore
+                lambda folder: self._add_select_app_dir_callback(
+                    app_menu_set,
+                    folder,  # type: ignore
+                    menu_text,
+                ),
                 str(app.app_dir or ""),  # default folder for selecting is not working on Windows (ST bug?)
             )
 
@@ -98,7 +104,11 @@ class WcmToggleOpenWithCommand(sublime_plugin.ApplicationCommand):
         return app_menu_set.exists()
 
     @staticmethod
-    def _add_select_app_dir_callback(app_menu_set: AppContextMenuSet, app_dir: Optional[CanPath]) -> None:
+    def _add_select_app_dir_callback(
+        app_menu_set: AppContextMenuSet,
+        app_dir: Optional[CanPath],
+        menu_text: str,
+    ) -> None:
         if not app_dir:
             return
         app_dir = Path(app_dir)
@@ -110,4 +120,4 @@ class WcmToggleOpenWithCommand(sublime_plugin.ApplicationCommand):
                 sublime.error_message(f'Can not find "{file}" in "{app_dir}".')
                 return
 
-        app_menu_set.add(app_dir)
+        app_menu_set.add(app_dir, menu_text)

@@ -3,6 +3,47 @@
         "id": "preferences",
         "children": [
             {
+                "id": "package-settings",
+                "children": [
+                    {
+                        "caption": "WindowsContextMenu",
+                        "children": [
+                            {
+                                "caption": "-",
+                            },
+                            {
+                                "caption": "Settings",
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/WindowsContextMenu/WindowsContextMenu.sublime-settings",
+                                    "default": "{\n\t$0\n}\n",
+                                },
+                            },
+                            {
+                                "caption": "-",
+                            },
+                            {
+                                "caption": "README",
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/WindowsContextMenu/README.md",
+                                },
+                            },
+                            {
+                                "caption": "CHANGELOG",
+                                "command": "open_file",
+                                "args": {
+                                    "file": "${packages}/WindowsContextMenu/CHANGELOG.md",
+                                },
+                            },
+                            {
+                                "caption": "-",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
                 "caption": "-",
             },
             {
@@ -82,9 +123,6 @@
                         ],
                     },
                 ],
-            },
-            {
-                "caption": "-",
             },
         ],
     },

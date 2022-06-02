@@ -15,9 +15,9 @@ class AppContextMenuSet:
     def exists(self) -> bool:
         return all(self._exists(self.app, target) for target in self.targets)
 
-    def add(self, app_dir: Path) -> None:
+    def add(self, app_dir: Path, menu_text: str) -> None:
         for target in self.targets:
-            self._add(self.app, target, app_dir=app_dir)
+            self._add(self.app, target, app_dir=app_dir, menu_text=menu_text)
 
     def remove(self) -> None:
         for target in self.targets:
@@ -32,9 +32,9 @@ class AppContextMenuSet:
             return False
 
     @staticmethod
-    def _add(app: AppInfo, target: MenuTarget, *, app_dir: Path) -> None:
+    def _add(app: AppInfo, target: MenuTarget, *, app_dir: Path, menu_text: str) -> None:
         with winreg.CreateKey(winreg.HKEY_CURRENT_USER, Rf"{target.reg_key}\{app.name}") as app_key:
-            winreg.SetValueEx(app_key, None, 0, winreg.REG_SZ, f"Open with {app.name}")
+            winreg.SetValueEx(app_key, None, 0, winreg.REG_SZ, menu_text.format(app=app))
             winreg.SetValueEx(app_key, "Icon", 0, winreg.REG_SZ, f"{app_dir / app.exe_name},0")
         with winreg.CreateKey(winreg.HKEY_CURRENT_USER, Rf"{target.reg_key}\{app.name}\command") as app_cmd_key:
             arg = '"%V"' if target.type == "directory_background" else '"%1"'
