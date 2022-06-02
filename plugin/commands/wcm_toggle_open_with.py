@@ -105,7 +105,7 @@ class WcmToggleOpenWithCommand(sublime_plugin.ApplicationCommand):
 
         # ensure necessary executables exist
         app = app_menu_set.app
-        for file in (app.exe_name, app.cmd_exe_name):
+        for file in {app.exe_name, app.cmd_exe_name}:
             if not (app_dir / file).is_file():
                 sublime.error_message(f'Can not find "{file}" in "{app_dir}".')
                 return
