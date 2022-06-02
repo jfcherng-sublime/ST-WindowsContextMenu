@@ -17,8 +17,8 @@ class AppInfo:
         if self.nickname == "st":
             return Path(sublime.executable_path()).parent
         if self.nickname == "sm":
-            if Path(bound_sm := get_st_setting("sublime_merge_path", "")).is_file():
-                return bound_sm.parent
+            if (sm_path := Path(get_st_setting("sublime_merge_path", ""))).is_file():
+                return sm_path.parent
             # convention
             if (default := Path(R"C:\Program Files\Sublime Merge")).is_dir():
                 return default
