@@ -1,3 +1,4 @@
 {
+    // customize the menu text in your localization
     "menu_text": "Open with {app.name}",
 }

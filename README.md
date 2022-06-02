@@ -33,5 +33,14 @@ Go to Sublime Text's main menu » `Preferences` » `Windows Context Menu`.
   - Context menu for directory
   - Context menu for directory background
 
+## Settings
+
+```js
+{
+    // customize the menu text in your localization
+    "menu_text": "Open with {app.name}",
+}
+```
+
 [windowscontextmenu]: https://packagecontrol.io/packages/WindowsContextMenu
 [package-control]: https://packagecontrol.io
