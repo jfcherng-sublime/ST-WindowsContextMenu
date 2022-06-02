@@ -10,11 +10,11 @@
 
 WindowsContextMenu is a Sublime Text plugin which adds/removes Windows context menu for Sublime Text/Merge.
 
+![screenshot](https://raw.githubusercontent.com/jfcherng-sublime/ST-WindowsContextMenu/main/docs/screenshot.png)
+
 ## Installation
 
 This package is available on [Package Control][package-control] by the name of [WindowsContextMenu][windowscontextmenu].
-
-![screenshot](https://raw.githubusercontent.com/jfcherng-sublime/ST-WindowsContextMenu/main/docs/screenshot.png)
 
 ## Usage
 
