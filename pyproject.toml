@@ -6,10 +6,23 @@ mypy_path = 'typings:stubs'
 
 [[tool.mypy.overrides]]
 module = [
-    "plugin.libs.*",
+    'plugin.libs.*',
 ]
 ignore_errors = true
 ignore_missing_imports = true
+
+[tool.isort]
+line_length = 120
+profile = 'black'
+py_version=38
+skip_glob = [
+  ".venv/**",
+  "libs/**",
+  "stubs/**",
+  "typings/**",
+  "vendor/**",
+  "venv/**",
+]
 
 [tool.black]
 line-length = 120
