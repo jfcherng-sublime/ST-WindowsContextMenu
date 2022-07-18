@@ -1,30 +1,14 @@
-from ..settings import get_plugin_setting
 from ..core import AppContextMenuSet
+from ..settings import get_plugin_setting
 from ..types import AppInfo, MenuTarget
 from pathlib import Path
-from typing import Any, Callable, Optional, TypeVar, Union
+from typing import Any, Callable, Optional, TypeVar, Union, cast
+from functools import wraps
 import sublime
 import sublime_plugin
 
 AnyCallable = TypeVar("AnyCallable", bound=Callable[..., Any])
 CanPath = Union[str, Path]
-
-
-def provide_app_menu_set(error_prompt: bool = False) -> Callable[[AnyCallable], AnyCallable]:
-    def decorator(func: AnyCallable) -> AnyCallable:
-        def wrapper(self: sublime_plugin.Command, app: str, target: str, **kwargs) -> Any:
-            try:
-                app_menu_set = parse_app_and_target(app, target)
-            except Exception:
-                if error_prompt:
-                    sublime.error_message(f"Unsupported args: {app = }, {target = }")
-                    return
-                app_menu_set = None
-            return func(self, app_menu_set=app_menu_set, **kwargs)
-
-        return wrapper  # type: ignore
-
-    return decorator
 
 
 def parse_app_and_target(app: str, target_str: str) -> AppContextMenuSet:
@@ -42,6 +26,24 @@ def parse_app_and_target(app: str, target_str: str) -> AppContextMenuSet:
         targets = [MENU_TARGETS[target_str]]  # may KeyError
 
     return AppContextMenuSet(app_info, targets)
+
+
+def _provide_app_menu_set(error_prompt: bool = False) -> Callable[[AnyCallable], AnyCallable]:
+    def decorator(func: AnyCallable) -> AnyCallable:
+        @wraps(func)
+        def wrapper(self: sublime_plugin.Command, app: str, target: str, **kwargs) -> Any:
+            try:
+                app_menu_set = parse_app_and_target(app, target)
+            except Exception:
+                if error_prompt:
+                    sublime.error_message(f"Unsupported args: {app = }, {target = }")
+                    return
+                app_menu_set = None
+            return func(self, app_menu_set=app_menu_set, **kwargs)
+
+        return cast(AnyCallable, wrapper)
+
+    return decorator
 
 
 APPS = {
@@ -76,11 +78,11 @@ MENU_TARGETS = {
 
 
 class WcmToggleOpenWithCommand(sublime_plugin.ApplicationCommand):
-    @provide_app_menu_set(error_prompt=False)
+    @_provide_app_menu_set(error_prompt=False)
     def is_checked(self, app_menu_set: Optional[AppContextMenuSet]) -> bool:  # type: ignore
         return bool(app_menu_set and self._is_checked(app_menu_set))
 
-    @provide_app_menu_set(error_prompt=True)
+    @_provide_app_menu_set(error_prompt=True)
     def run(self, app_menu_set: AppContextMenuSet) -> None:
         # currently enabled => we want to disable
         if self._is_checked(app_menu_set):
