@@ -1,8 +1,10 @@
-from .settings import get_st_setting
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
+
 import sublime
+
+from .settings import get_st_setting
 
 
 @dataclass

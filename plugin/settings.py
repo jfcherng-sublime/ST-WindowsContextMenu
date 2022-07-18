@@ -1,6 +1,8 @@
-from .constants import PLUGIN_NAME
 from typing import Any, Optional
+
 import sublime
+
+from .constants import PLUGIN_NAME
 
 
 def get_plugin_setting(key: str, default: Optional[Any] = None) -> Any:

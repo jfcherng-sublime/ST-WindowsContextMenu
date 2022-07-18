@@ -1,8 +1,9 @@
-from .types import AppInfo, MenuTarget
-from pathlib import Path
-from typing import Sequence, Union
 import itertools
 import winreg
+from pathlib import Path
+from typing import Sequence, Union
+
+from .types import AppInfo, MenuTarget
 
 KeyType = Union[winreg.HKEYType, int]
 

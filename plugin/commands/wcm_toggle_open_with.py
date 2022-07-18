@@ -1,11 +1,13 @@
+from functools import wraps
+from pathlib import Path
+from typing import Any, Callable, Optional, TypeVar, Union, cast
+
+import sublime
+import sublime_plugin
+
 from ..core import AppContextMenuSet
 from ..settings import get_plugin_setting
 from ..types import AppInfo, MenuTarget
-from pathlib import Path
-from typing import Any, Callable, Optional, TypeVar, Union, cast
-from functools import wraps
-import sublime
-import sublime_plugin
 
 AnyCallable = TypeVar("AnyCallable", bound=Callable[..., Any])
 CanPath = Union[str, Path]
