@@ -18,4 +18,4 @@ def get_st_setting(key: str, default: Optional[Any] = None) -> Any:
 
 
 def get_st_settings() -> sublime.Settings:
-    return sublime.load_settings(f"Preferences.sublime-settings")
+    return sublime.load_settings("Preferences.sublime-settings")
