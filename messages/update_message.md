@@ -1,6 +1,6 @@
 WindowsContextMenu has been updated. To see the changelog, visit
 Preferences » Package Settings » Windows Context Menu » CHANGELOG
 
-## 1.1.1
+## 1.2.0
 
-- fix: SM dir detection when `sublime_merge_path` is set
+- feat: update existing menu text when text in settings changed
