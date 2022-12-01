@@ -11,7 +11,10 @@ KeyType = Union[winreg.HKEYType, int]
 class AppContextMenuSet:
     def __init__(self, app: AppInfo, targets: Sequence[MenuTarget]) -> None:
         self.app = app
-        self.targets = targets
+        self.targets = list(targets)
+
+    def __bool__(self) -> bool:
+        return bool(self.app and self.targets)
 
     def exists(self) -> bool:
         return all(self._exists(self.app, target) for target in self.targets)
