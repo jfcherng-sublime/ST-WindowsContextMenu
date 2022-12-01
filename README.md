@@ -37,8 +37,8 @@ Go to Sublime Text's main menu » `Preferences` » `Windows Context Menu`.
 
 ```js
 {
-    // Customize the menu text in your localization. If you want to change the existing menu text,
-    // after changing this setting, you have to remove those existing menus and then re-add them.
+    // Customize the menu text in your localization.
+    // If you change this, the text in existing menus will be updated immediately.
     "menu_text": "Open with {app.name}",
 }
 ```

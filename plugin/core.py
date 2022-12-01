@@ -13,11 +13,11 @@ class AppContextMenuSet:
         self.app = app
         self.targets = list(targets)
 
-    def __bool__(self) -> bool:
-        return bool(self.app and self.targets)
+    def __len__(self) -> int:
+        return len(self.targets)
 
     def exists(self) -> bool:
-        return all(self._exists(self.app, target) for target in self.targets)
+        return bool(self.targets and all(self._exists(self.app, target) for target in self.targets))
 
     def add(self, app_dir: Path, menu_text: str) -> None:
         for target in self.targets:
@@ -26,6 +26,10 @@ class AppContextMenuSet:
     def remove(self) -> None:
         for target in self.targets:
             self._remove(self.app, target)
+
+    def update_menu_text(self, menu_text: str) -> None:
+        for target in self.targets:
+            self._update_menu_text(self.app, target, menu_text)
 
     @staticmethod
     def _exists(app: AppInfo, target: MenuTarget) -> bool:
@@ -58,3 +62,13 @@ class AppContextMenuSet:
             winreg.DeleteKey(key, subkey)
 
         delete_key(winreg.HKEY_CURRENT_USER, Rf"{target.reg_key}\{app.name}", recursive=True)
+
+    @staticmethod
+    def _update_menu_text(app: AppInfo, target: MenuTarget, menu_text: str) -> None:
+        try:
+            with winreg.OpenKeyEx(
+                winreg.HKEY_CURRENT_USER, Rf"{target.reg_key}\{app.name}", 0, winreg.KEY_WRITE
+            ) as app_key:
+                winreg.SetValueEx(app_key, None, 0, winreg.REG_SZ, menu_text.format(app=app))
+        except OSError:
+            pass

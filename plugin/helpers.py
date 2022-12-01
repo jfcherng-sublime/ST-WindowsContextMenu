@@ -37,8 +37,7 @@ MENU_TARGETS = {
 
 def enabled_app_context_menu_sets() -> Generator[AppContextMenuSet, None, None]:
     for app, target in product(APP_INFOS.keys(), MENU_TARGETS.keys()):
-        app_menu_set = parse_app_and_target(app, target)
-        if app_menu_set and app_menu_set.exists():
+        if (app_menu_set := parse_app_and_target(app, target)).exists():
             yield app_menu_set
 
 
