@@ -46,7 +46,7 @@ class AppContextMenuSet:
             winreg.SetValueEx(app_key, "Icon", 0, winreg.REG_SZ, f"{app_dir / app.exe_name},0")
         with winreg.CreateKey(winreg.HKEY_CURRENT_USER, Rf"{target.reg_key}\{app.name}\command") as app_cmd_key:
             arg = '"%V"' if target.type == "directory_background" else '"%1"'
-            winreg.SetValueEx(app_cmd_key, None, 0, winreg.REG_SZ, f"{app_dir / app.cmd_exe_name} {arg}")
+            winreg.SetValueEx(app_cmd_key, None, 0, winreg.REG_SZ, f"{app_dir / app.exe_name} {arg}")
 
     @staticmethod
     def _remove(app: AppInfo, target: MenuTarget) -> None:
