@@ -1,7 +1,7 @@
 # ST-WindowsContextMenu
 
 [![Required ST Build](https://img.shields.io/badge/ST-4105+-orange.svg?style=flat-square&logo=sublime-text)](https://www.sublimetext.com)
-[![GitHub Actions](https://img.shields.io/github/workflow/status/jfcherng-sublime/ST-WindowsContextMenu/Python?style=flat-square)](https://github.com/jfcherng-sublime/ST-WindowsContextMenu/actions)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/jfcherng-sublime/ST-WindowsContextMenu/python.yml?branch=main&style=flat-square)](https://github.com/jfcherng-sublime/ST-WindowsContextMenu/actions)
 [![Package Control](https://img.shields.io/packagecontrol/dt/WindowsContextMenu?style=flat-square)](https://packagecontrol.io/packages/WindowsContextMenu)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/jfcherng-sublime/ST-WindowsContextMenu?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-WindowsContextMenu/tags)
 [![Project license](https://img.shields.io/github/license/jfcherng-sublime/ST-WindowsContextMenu?style=flat-square&logo=github)](https://github.com/jfcherng-sublime/ST-WindowsContextMenu/blob/main/LICENSE)
