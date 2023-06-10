@@ -1,5 +1,12 @@
 # WindowsContextMenu Changelog
 
+## 1.2.2
+
+- refactor: update py38 syntax
+- chore: update env
+- docs: fix build status badge in readme
+- chore: update `.gitattributes`
+
 ## 1.2.1
 
 - refactor: use `sublime_text.exe` rather than `subl.exe`
