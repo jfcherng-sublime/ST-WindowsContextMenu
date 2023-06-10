@@ -5,16 +5,14 @@ strict_optional = true
 mypy_path = 'typings:stubs'
 
 [[tool.mypy.overrides]]
-module = [
-    "plugin.libs.*",
-]
+module = ["plugin.libs.*"]
 ignore_errors = true
 ignore_missing_imports = true
 
 [tool.isort]
 line_length = 120
 profile = 'black'
-py_version=38
+py_version = 38
 skip_glob = [
   ".venv/**",
   "br-*/**",
@@ -34,6 +32,7 @@ remove-all-unused-imports = true
 exclude = '\.git,\.?venv,\.mypy_cache,br-.*,branch-.*,libs,stubs,tests/files,typings'
 
 [tool.black]
+preview = true
 line-length = 120
 target-version = ['py38']
 exclude = '''
@@ -60,9 +59,11 @@ exclude = [
   '**/br-*/',
   '**/branch-*/',
 ]
-ignore = [
-  '**/.venv',
-  '**/libs',
-]
+ignore = ['**/.venv', '**/libs']
 stubPath = 'typings'
 pythonVersion = '3.8'
+
+[tool.ruff]
+select = ["E", "F", "W"]
+line-length = 120
+target-version = 'py38'
