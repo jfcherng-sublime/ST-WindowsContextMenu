@@ -1,6 +1,7 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Optional
 
 import sublime
 
@@ -15,7 +16,7 @@ class AppInfo:
     cmd_exe_name: str
 
     @property
-    def app_dir(self) -> Optional[Path]:
+    def app_dir(self) -> Path | None:
         if self.nickname == "st":
             return Path(sublime.executable_path()).parent
         if self.nickname == "sm":

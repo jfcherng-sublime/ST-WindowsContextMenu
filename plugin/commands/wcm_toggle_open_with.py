@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 from functools import wraps
 from pathlib import Path
-from typing import Any, Callable, Optional, TypeVar, Union, cast
+from typing import Any, Callable, TypeVar, cast
 
 import sublime
 import sublime_plugin
@@ -9,12 +11,11 @@ from ..core import AppContextMenuSet
 from ..helpers import parse_app_and_target
 from ..settings import get_plugin_setting
 
-AnyCallable = TypeVar("AnyCallable", bound=Callable[..., Any])
-CanPath = Union[str, Path]
+_T_AnyCallable = TypeVar("_T_AnyCallable", bound=Callable[..., Any])
 
 
-def _provide_app_menu_set(error_prompt: bool = False) -> Callable[[AnyCallable], AnyCallable]:
-    def decorator(func: AnyCallable) -> AnyCallable:
+def _provide_app_menu_set(error_prompt: bool = False) -> Callable[[_T_AnyCallable], _T_AnyCallable]:
+    def decorator(func: _T_AnyCallable) -> _T_AnyCallable:
         @wraps(func)
         def wrapper(self: sublime_plugin.Command, app: str, target: str, **kwargs) -> Any:
             try:
@@ -26,14 +27,14 @@ def _provide_app_menu_set(error_prompt: bool = False) -> Callable[[AnyCallable],
                 app_menu_set = None
             return func(self, app_menu_set=app_menu_set, **kwargs)
 
-        return cast(AnyCallable, wrapper)
+        return cast(_T_AnyCallable, wrapper)
 
     return decorator
 
 
 class WcmToggleOpenWithCommand(sublime_plugin.ApplicationCommand):
     @_provide_app_menu_set(error_prompt=False)
-    def is_checked(self, app_menu_set: Optional[AppContextMenuSet]) -> bool:  # type: ignore
+    def is_checked(self, app_menu_set: AppContextMenuSet | None) -> bool:  # type: ignore
         return bool(app_menu_set and self._is_checked(app_menu_set))
 
     @_provide_app_menu_set(error_prompt=True)
@@ -62,7 +63,7 @@ class WcmToggleOpenWithCommand(sublime_plugin.ApplicationCommand):
     @staticmethod
     def _add_select_app_dir_callback(
         app_menu_set: AppContextMenuSet,
-        app_dir: Optional[CanPath],
+        app_dir: str | Path | None,
         menu_text: str,
     ) -> None:
         if not app_dir:
