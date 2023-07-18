@@ -10,6 +10,8 @@
 
 This is a Sublime Text plugin which adds/removes "classic" Windows context menu for Sublime Text/Merge.
 
+⚠️ This plugin won't work with Win11's new context menu since it doesn't seem to be purely controlled by registry.
+
 ![screenshot](https://raw.githubusercontent.com/jfcherng-sublime/ST-WindowsContextMenu/main/docs/screenshot.png)
 
 ## Installation
