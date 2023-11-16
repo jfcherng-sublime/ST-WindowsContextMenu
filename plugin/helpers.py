@@ -44,7 +44,7 @@ def enabled_app_context_menu_sets() -> Generator[AppContextMenuSet, None, None]:
 
 
 def parse_app_and_target(app_name: str, target_name: str) -> AppContextMenuSet:
-    if not (app_info := APP_INFOS.get(app_name, None)):
+    if not (app_info := APP_INFOS.get(app_name)):
         raise ValueError
 
     if target_name == "_all_":
