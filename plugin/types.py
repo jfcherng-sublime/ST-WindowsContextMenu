@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Literal
 
 import sublime
 
@@ -25,11 +26,10 @@ class AppInfo:
             # convention
             if (default := Path(R"C:\Program Files\Sublime Merge")).is_dir():
                 return default
-            return None
         return None
 
 
 @dataclass
 class MenuTarget:
-    type: str
+    type: Literal["file", "directory", "directory_background"]
     reg_key: str
