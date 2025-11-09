@@ -1,7 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Generator
 from itertools import product
-from typing import Generator
 
 from .core import AppContextMenuSet
 from .types import AppInfo, MenuTarget
@@ -37,7 +37,7 @@ MENU_TARGETS = {
 }
 
 
-def enabled_app_context_menu_sets() -> Generator[AppContextMenuSet, None, None]:
+def enabled_app_context_menu_sets() -> Generator[AppContextMenuSet]:
     for app, target in product(APP_INFOS.keys(), MENU_TARGETS.keys()):
         if (app_menu_set := parse_app_and_target(app, target)).exists():
             yield app_menu_set

@@ -2,12 +2,12 @@ from __future__ import annotations
 
 import itertools
 import winreg
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence, Union
 
 from .types import AppInfo, MenuTarget
 
-KeyType = Union[winreg.HKEYType, int]
+type KeyType = winreg.HKEYType | int
 
 
 class AppContextMenuSet:
