@@ -4,7 +4,8 @@ from collections.abc import Generator
 from itertools import product
 
 from .core import AppContextMenuSet
-from .types import AppInfo, MenuTarget
+from .types import AppInfo
+from .types import MenuTarget
 
 APP_INFOS = {
     "sublime_text": AppInfo(

@@ -3,7 +3,9 @@ from __future__ import annotations
 from collections.abc import Callable
 from functools import wraps
 from pathlib import Path
-from typing import Any, TypeVar, cast
+from typing import Any
+from typing import TypeVar
+from typing import cast
 
 import sublime
 import sublime_plugin

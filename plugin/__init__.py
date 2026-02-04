@@ -4,7 +4,8 @@ from __future__ import annotations
 from .commands.wcm_toggle_open_with import WcmToggleOpenWithCommand
 from .constants import PLUGIN_NAME
 from .helpers import enabled_app_context_menu_sets
-from .settings import get_plugin_setting, get_plugin_settings
+from .settings import get_plugin_setting
+from .settings import get_plugin_settings
 
 __all__ = (
     # ST: core

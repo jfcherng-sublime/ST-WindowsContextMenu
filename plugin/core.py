@@ -5,7 +5,8 @@ import winreg
 from collections.abc import Sequence
 from pathlib import Path
 
-from .types import AppInfo, MenuTarget
+from .types import AppInfo
+from .types import MenuTarget
 
 type KeyType = winreg.HKEYType | int
 
