@@ -3,16 +3,16 @@ name = "WindowsContextMenu"
 version = "0.0.0"
 description = "WindowsContextMenu is a Sublime Text plugin which adds or removes Windows Context menu for Sublime Text/Merge."
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
-  "more-itertools>=10,<11",
-  "typing-extensions>=4.11",
+  "more-itertools>=11,<12",
+  "typing-extensions>=4.12",
 ]
 
 [dependency-groups]
 dev = [
-  "mypy>=1.18",
-  "ruff>=0.14",
+  "mypy>=1.20",
+  "ruff>=0.15",
 ]
 
 [tool.uv]
@@ -41,12 +41,12 @@ exclude = [
 ]
 ignore = ['**/.venv', '**/libs']
 stubPath = 'typings'
-pythonVersion = '3.13'
+pythonVersion = '3.14'
 
 [tool.ruff]
 preview = true
 line-length = 120
-target-version = 'py313'
+target-version = 'py314'
 exclude = [
   "*/libs/*",
   ".git",
@@ -73,6 +73,9 @@ select = [
   "SIM",
 ]
 ignore = ["E203"]
+
+[tool.ruff.lint.isort]
+force-single-line = true
 
 [tool.ruff.lint.per-file-ignores]
 "boot.py" = ["E402"]
