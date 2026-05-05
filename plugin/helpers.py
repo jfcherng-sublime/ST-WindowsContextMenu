@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from collections.abc import Generator
 from itertools import product
 
@@ -48,14 +46,15 @@ def parse_app_and_target(app_name: str, target_name: str) -> AppContextMenuSet:
     if not (app_info := APP_INFOS.get(app_name)):
         raise ValueError
 
-    if target_name == "_all_":
-        targets = [
-            target
-            for target in MENU_TARGETS.values()
-            # cannot open a file with SM
-            if not (app_info.nickname == "sm" and target.type == "file")
-        ]
-    else:
-        targets = [MENU_TARGETS[target_name]]  # may KeyError
+    match target_name:
+        case "_all_":
+            targets = [
+                target
+                for target in MENU_TARGETS.values()
+                # cannot open a file with SM
+                if not (app_info.nickname == "sm" and target.type == "file")
+            ]
+        case _:
+            targets = [MENU_TARGETS[target_name]]  # may KeyError
 
     return AppContextMenuSet(app_info, targets)

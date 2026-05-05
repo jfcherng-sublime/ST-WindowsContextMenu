@@ -1,11 +1,10 @@
-from __future__ import annotations
-
 from collections.abc import Callable
 from functools import wraps
 from pathlib import Path
 from typing import Any
 from typing import TypeVar
 from typing import cast
+from typing import override
 
 import sublime
 import sublime_plugin
@@ -36,10 +35,12 @@ def _provide_app_menu_set(error_prompt: bool = False) -> Callable[[_T_AnyCallabl
 
 
 class WcmToggleOpenWithCommand(sublime_plugin.ApplicationCommand):
+    @override
     @_provide_app_menu_set(error_prompt=False)
     def is_checked(self, app_menu_set: AppContextMenuSet | None) -> bool:  # type: ignore
         return bool(app_menu_set and self._is_checked(app_menu_set))
 
+    @override
     @_provide_app_menu_set(error_prompt=True)
     def run(self, app_menu_set: AppContextMenuSet) -> None:
         # currently enabled => we want to disable

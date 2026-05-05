@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 # import all listeners and commands
 from .commands.wcm_toggle_open_with import WcmToggleOpenWithCommand
 from .constants import PLUGIN_NAME
