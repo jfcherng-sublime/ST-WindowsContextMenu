@@ -1,5 +1,9 @@
 # WindowsContextMenu Changelog
 
+## 3.0.0
+
+- refactor: use py314 features
+
 ## 2.0.0
 
 - refactor: use py313 features
